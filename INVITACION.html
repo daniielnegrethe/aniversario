@@ -268,7 +268,7 @@
             position: relative;
         }
         
-        /* Poem Section */
+        /* Poem Section - CORREGIDO PARA MÓVILES */
         .poem {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/fondo.jpeg') center/cover no-repeat;
             text-align: center;
@@ -281,25 +281,27 @@
             pointer-events: none;
             transition: opacity 0.5s ease;
             z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-y: auto;
+            display: none; /* Cambiado de flex a none por defecto */
+            overflow-y: auto; /* Asegurar que se pueda hacer scroll */
         }
         
         .poem.active {
             opacity: 1;
             pointer-events: auto;
             z-index: 5;
+            display: block; /* Mostrar como bloque para mejor scroll */
+            padding-top: 60px; /* Espacio para el botón de regreso */
+            padding-bottom: 40px; /* Espacio al final */
         }
         
         .poem .container {
             max-width: 800px;
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin: 20px;
+            margin: 0 auto 40px; /* Margen inferior añadido */
+            width: 90%;
         }
         
         .poem h2 {
@@ -332,13 +334,20 @@
             opacity: 0;
             pointer-events: none;
             overflow-y: auto;
+            display: none;
         }
         
         .invitation.active {
-            display: flex;
+            display: block;
             opacity: 1;
             pointer-events: auto;
             z-index: 5;
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        
+        .invitation .container {
+            padding-top: 0;
         }
         
         .invitation h2 {
@@ -401,6 +410,7 @@
             transition: opacity 0.5s ease;
             z-index: 1;
             overflow-y: auto;
+            display: none;
         }
         
         .destination.active {
@@ -408,10 +418,12 @@
             pointer-events: auto;
             z-index: 5;
             display: block;
+            padding-top: 60px;
+            padding-bottom: 40px;
         }
         
         .destination .container {
-            padding: 80px 20px 40px;
+            padding-top: 0;
         }
         
         .destination h2 {
@@ -493,6 +505,7 @@
             transition: opacity 0.5s ease;
             z-index: 1;
             overflow-y: auto;
+            display: none;
         }
         
         .itinerary.active {
@@ -500,10 +513,12 @@
             pointer-events: auto;
             z-index: 5;
             display: block;
+            padding-top: 60px;
+            padding-bottom: 40px;
         }
         
         .itinerary .container {
-            padding: 80px 20px 40px;
+            padding-top: 0;
         }
         
         .itinerary h2 {
@@ -608,6 +623,7 @@
             transition: opacity 0.5s ease;
             z-index: 1;
             overflow-y: auto;
+            display: none;
         }
         
         .memories.active {
@@ -615,10 +631,12 @@
             pointer-events: auto;
             z-index: 5;
             display: block;
+            padding-top: 60px;
+            padding-bottom: 40px;
         }
         
         .memories .container {
-            padding: 80px 20px 40px;
+            padding-top: 0;
         }
         
         .memories h2 {
@@ -757,9 +775,7 @@
             pointer-events: none;
             transition: opacity 0.5s ease;
             z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: none;
             overflow-y: auto;
         }
         
@@ -767,6 +783,10 @@
             opacity: 1;
             pointer-events: auto;
             z-index: 5;
+            display: flex;
+            align-items: center;
+            padding-top: 60px;
+            padding-bottom: 40px;
         }
         
         .closing h2 {
@@ -968,12 +988,27 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .poem .container, 
+            /* Estilos adicionales para la sección del poema en móviles */
+            .poem .container {
+                padding: 25px 15px; /* Reducir padding */
+                margin-top: 20px;
+            }
+            
+            .poem h2 {
+                font-size: 2.2rem;
+                margin-bottom: 25px;
+            }
+            
+            .poem p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+            
             .card {
                 padding: 30px 20px;
             }
             
-            .poem h2, 
             .invitation h2, 
             .destination h2, 
             .itinerary h2, 
@@ -1021,6 +1056,7 @@
                 font-size: 1.3rem;
             }
             
+            /* Ajustes adicionales para móviles pequeños */
             .poem h2, 
             .invitation h2, 
             .destination h2, 
@@ -1028,6 +1064,11 @@
             .memories h2, 
             .closing h2 {
                 font-size: 2rem;
+            }
+            
+            .poem p {
+                font-size: 0.95rem;
+                line-height: 1.5;
             }
             
             .gallery {
@@ -1382,6 +1423,15 @@
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
+                
+                // Comportamiento especial para la sección del poema
+                if (sectionId === 'poem') {
+                    // Asegurar que comienza desde el principio
+                    setTimeout(function() {
+                        targetSection.scrollTop = 0;
+                    }, 100);
+                }
+                
                 // Habilitar scroll para la sección activa
                 document.body.style.overflow = 'auto';
             }
