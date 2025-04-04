@@ -1559,23 +1559,36 @@
         // Sistema de contraseña
         // Sistema de contraseña
         const passwordConfig = {
-            "invitation": "teamo123",
-            "destination": "teamo123",
-            "itinerary": "teamo789"
+            "invitacion": {
+                password: "teamo123",
+                sections: ["invitacion", "destino"]
+            },
+            "itinerario": {
+                password: "teamo789",
+                sections: ["itinerario"]
+            }
         };
         
         function promptForPassword(sectionId) {
-            const expectedPassword = passwordConfig[sectionId];
-            
-            if (!expectedPassword) {
-                console.error("Sección no protegida");
+            let matchedConfig = null;
+        
+            // Buscar la configuración correcta
+            for (const [key, config] of Object.entries(passwordConfig)) {
+                if (config.sections.includes(sectionId)) {
+                    matchedConfig = config;
+                    break;
+                }
+            }
+        
+            if (!matchedConfig) {
+                console.error("Sección no encontrada");
                 return;
             }
         
             const input = prompt("🔐 Esta sección es muy especial. Te daré la contraseña después, si ya la tienes, ingrésala:");
             
             // Solo muestra la sección si la contraseña es correcta
-            if (input === expectedPassword) {
+            if (input === matchedConfig.password) {
                 showSection(sectionId);
             } else if (input !== null) {
                 // Si hay input pero es incorrecto
@@ -1583,7 +1596,6 @@
             }
             // Si input es null (usuario canceló), no hacemos nada
         }
-
         // Eventos para los botones de menú
         menuButtons.forEach(button => {
             button.addEventListener('click', () => {
