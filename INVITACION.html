@@ -1557,27 +1557,24 @@
         }
         
         // Sistema de contraseña
-        const sectionPassword = "teamo123"; // Contraseña
-        const protectedSections = ["invitation", "destination"];
+        const protectedSections = {
+            "invitation": "teamo123",
+            "destination": "teamo123",
+            "itinerary": "teamo789"
+        };
         
-        const sectionPassword2 = "teamo789"; // Contraseña
-        const protectedSections = ["itinerary"];
-    
         function promptForPassword(sectionId) {
+            const expectedPassword = protectedSections[sectionId];
+            
+            if (!expectedPassword) {
+                console.error("Sección no protegida");
+                return;
+            }
+        
             const input = prompt("🔐 Esta sección es muy especial. Te daré la contraseña después, si ya la tienes, ingrésala:");
             
             // Solo muestra la sección si la contraseña es correcta
-            if (input === sectionPassword) {
-                showSection(sectionId);
-            } else if (input !== null) {
-                // Si hay input pero es incorrecto
-                alert("🚫 Contraseña incorrecta. Lo siento amor, aun no es el momento.");
-            }
-            // Si input es null (usuario canceló), no hacemos nada
-        }
-
-                    // Solo muestra la sección si la contraseña es correcta
-            if (input === sectionPassword2) {
+            if (input === expectedPassword) {
                 showSection(sectionId);
             } else if (input !== null) {
                 // Si hay input pero es incorrecto
