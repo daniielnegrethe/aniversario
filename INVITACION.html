@@ -1557,32 +1557,22 @@
         }
         
         // Sistema de contraseña
-        const sectionPassword = "teamo123"; // Contraseña principal
-        const sectionPassword2 = "teamo789"; // Segunda contraseña
-        
+        const sectionPassword = "teamo123"; // Contraseña
         const protectedSections = ["invitation", "destination", "itinerary"];
-        
+    
         function promptForPassword(sectionId) {
             const input = prompt("🔐 Esta sección es muy especial. Te daré la contraseña después, si ya la tienes, ingrésala:");
             
-            // Verifica con la primera contraseña
+            // Solo muestra la sección si la contraseña es correcta
             if (input === sectionPassword) {
                 showSection(sectionId);
-                return; // Salir después de mostrar la sección
-            }
-            
-            // Verifica con la segunda contraseña
-            if (input === sectionPassword2) {
-                showSection(sectionId);
-                return; // Salir después de mostrar la sección
-            }
-            
-            // Si el input no es nulo y no coincide con ninguna contraseña
-            if (input !== null) {
+            } else if (input !== null) {
+                // Si hay input pero es incorrecto
                 alert("🚫 Contraseña incorrecta. Lo siento amor, aun no es el momento.");
             }
             // Si input es null (usuario canceló), no hacemos nada
         }
+
         // Eventos para los botones de menú
         menuButtons.forEach(button => {
             button.addEventListener('click', () => {
