@@ -1557,14 +1557,22 @@
         }
         
         // Sistema de contraseña
-        const sectionPassword = "teamo123"; // Contraseña
+        // Sistema de contraseña
+        const sectionPasswords = {
+            "invitation": "teamo123",
+            "destination": "teamo123",
+            "itinerary": "teamo789"
+        };
+        
         const protectedSections = ["invitation", "destination", "itinerary"];
-    
+        
         function promptForPassword(sectionId) {
+            const expectedPassword = sectionPasswords[sectionId];
+            
             const input = prompt("🔐 Esta sección es muy especial. Te daré la contraseña después, si ya la tienes, ingrésala:");
             
             // Solo muestra la sección si la contraseña es correcta
-            if (input === sectionPassword) {
+            if (input === expectedPassword) {
                 showSection(sectionId);
             } else if (input !== null) {
                 // Si hay input pero es incorrecto
@@ -1572,7 +1580,7 @@
             }
             // Si input es null (usuario canceló), no hacemos nada
         }
-
+        
         // Eventos para los botones de menú
         menuButtons.forEach(button => {
             button.addEventListener('click', () => {
