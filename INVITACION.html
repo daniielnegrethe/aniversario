@@ -1557,41 +1557,28 @@
         }
         
         // Sistema de contraseña
-        // Sistema de contraseña
-        const passwordConfig = {
-            "invitacion": {
-                password: "teamo123",
-                sections: ["invitacion", "destino"]
-            },
-            "itinerario": {
-                password: "teamo789",
-                sections: ["itinerario"]
-            }
-        };
+        const sectionPassword = "teamo123"; // Contraseña principal
+        const sectionPassword2 = "teamo789"; // Segunda contraseña
+        
+        const protectedSections = ["invitation", "destination", "itinerary"];
         
         function promptForPassword(sectionId) {
-            let matchedConfig = null;
-        
-            // Buscar la configuración correcta
-            for (const [key, config] of Object.entries(passwordConfig)) {
-                if (config.sections.includes(sectionId)) {
-                    matchedConfig = config;
-                    break;
-                }
-            }
-        
-            if (!matchedConfig) {
-                console.error("Sección no encontrada");
-                return;
-            }
-        
             const input = prompt("🔐 Esta sección es muy especial. Te daré la contraseña después, si ya la tienes, ingrésala:");
             
-            // Solo muestra la sección si la contraseña es correcta
-            if (input === matchedConfig.password) {
+            // Verifica con la primera contraseña
+            if (input === sectionPassword) {
                 showSection(sectionId);
-            } else if (input !== null) {
-                // Si hay input pero es incorrecto
+                return; // Salir después de mostrar la sección
+            }
+            
+            // Verifica con la segunda contraseña
+            if (input === sectionPassword2) {
+                showSection(sectionId);
+                return; // Salir después de mostrar la sección
+            }
+            
+            // Si el input no es nulo y no coincide con ninguna contraseña
+            if (input !== null) {
                 alert("🚫 Contraseña incorrecta. Lo siento amor, aun no es el momento.");
             }
             // Si input es null (usuario canceló), no hacemos nada
