@@ -1557,14 +1557,15 @@
         }
         
         // Sistema de contraseña
-        const protectedSections = {
+        // Sistema de contraseña
+        const passwordConfig = {
             "invitation": "teamo123",
             "destination": "teamo123",
             "itinerary": "teamo789"
         };
         
         function promptForPassword(sectionId) {
-            const expectedPassword = protectedSections[sectionId];
+            const expectedPassword = passwordConfig[sectionId];
             
             if (!expectedPassword) {
                 console.error("Sección no protegida");
@@ -1582,7 +1583,7 @@
             }
             // Si input es null (usuario canceló), no hacemos nada
         }
-        
+
         // Eventos para los botones de menú
         menuButtons.forEach(button => {
             button.addEventListener('click', () => {
