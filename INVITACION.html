@@ -222,7 +222,46 @@
             font-size: 1rem;
             border: 2px solid transparent;
         }
+
+        /* Estilo general para los cuadros */
+        .gallery-caption, .timeline-event {
+            background: rgba(255, 255, 255, 0.9); /* Fondo con transparencia */
+            border-radius: 15px; /* Bordes redondeados */
+            padding: 15px; /* Espaciado interno */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+            font-family: 'Poppins', sans-serif; /* Fuente moderna */
+            max-width: 350px; /* Limita el ancho */
+            text-align: center; /* Centra el texto */
+        }
         
+        /* Personalización de los títulos */
+        .gallery-caption h3, .timeline-event h3 {
+            color: #d63384; /* Color atractivo */
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        /* Ajustes a los párrafos */
+        .gallery-caption p, .timeline-event p {
+            color: #444;
+            font-size: 1em;
+            margin: 5px 0;
+        }
+        
+        /* Mejora los iconos y emojis */
+        .gallery-caption p em, .timeline-event p em {
+            color: #ff4081; /* Color rosado */
+            font-style: normal;
+            font-weight: bold;
+        }
+        
+        /* Mejora el diseño de la línea de tiempo */
+        .timeline-event {
+            border-left: 4px solid #ff4081; /* Línea de tiempo con color */
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
         .menu-btn:hover, .menu-btn.active {
             background-color: var(--secondary-color);
             transform: translateY(-3px);
@@ -1234,7 +1273,7 @@
 
         <div id="itinerary" class="itinerary">
             <div class="container">
-                <h2 class="itinerary-title">Nuestra Aventura: Puebla - Cuetzalan 🌄</h2>
+                <h2 class="itinerary-title">Nuestra Aventura: Puebla - Destino🌄</h2>
                 
                 <div class="timeline">
                     <!-- DÍA 1: SÁBADO -->
@@ -1263,7 +1302,7 @@
                             <div class="timeline-item">
                                 <div class="timeline-time">1:00 PM</div>
                                 <div class="timeline-content">
-                                    <h4>Llegada a Cuetzalan 🏡</h4>
+                                    <h4>Llegada🏡</h4>
                                     <p>Exploramos este hermoso pueblo mágico.</p>
                                 </div>
                             </div>
